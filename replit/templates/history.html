@@ -8,43 +8,26 @@
   </head>
   <body>
     <div class="navbar-container">
-      <a href="/history"> History </a>
+      <a href="/"> Home </a>
     </div>
     <center>
-      <div class="center-top">
-        <div class="title"> His internet is currently </div>
-        <div class="subtitle" id="updater"> checking... </div>
-        <div class="subtitle" id="timer"> </div>
+      <div class="subtitle"> 🌐 Internet History </div>
+      <div class="history-wrapper" id="history-wrapper">
+        {% for item in data %}
+          <div class="history">
+            <div> Time: {{item['time']}} </div>
+            {% if item['internet'] is true %}
+              Internet turned <span class="green"> on </span>
+            {% else %}
+              Internet turned <span class="red"> off </span>
+            {% endif %}
+          </div>
+        {% endfor %}
       </div>
+      <script>
+        var element = document.getElementById("history-wrapper")
+        element.scrollTop = element.scrollHeight;
+      </script>
     </center>
   </body>
-  <script>
-    var element = document.getElementById("updater")
-    var timer   = document.getElementById("timer")
-
-    async function updater() {
-      const promise = await fetch('/sync')
-      const data = await promise.json()
-
-      if (data["internet"] == true) {
-        element.classList.remove("red")
-        element.classList.add("green")
-
-        element.innerHTML = "Turned On"
-        timer.innerHTML   = "Last synced: "+data["last_synced"]+" seconds ago"
-        document.title = "🟢 Internet?"
-      }
-      else {
-        element.classList.remove("green")
-        element.classList.add("red")
-        
-        element.innerHTML = "Turned Off"
-        timer.innerHTML   = "Last on: "+data["last_synced"][0]+" hours "+data["last_synced"][1]+" minutes "+data["last_synced"][2]+" seconds ago"
-        document.title = "🔴 Internet?"
-      }
-
-    }
-
-    window.onload = setInterval(updater, 3000);
-  </script>
 </html>
