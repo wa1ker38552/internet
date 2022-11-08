@@ -3,6 +3,9 @@ A simple website to show others if you have internet or not.
 
 Could be used to show other people if you internet is down lol.
 
+**?**
+Works by sending requests locally to a Flask application hosted online. If the Flask application notices that it hasn't been pinged for 10 seconds, it'll assume that the internet is down on the local device.
+
 **Getting Started**
 1. On a local python interpreter, drag and drop the contents of pycharm into a new environment.
 2. On a online interpreter, such as replit, drag and drop the contents of replit.
