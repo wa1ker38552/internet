@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title> Internet? </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <div class="navbar-container">
+      <a href="/history"> History </a>
+    </div>
+    <center>
+      <div class="center-top">
+        <div class="title"> Their internet is currently </div>
+        <div class="subtitle" id="updater"> checking... </div>
+        <div class="subtitle" id="timer"> </div>
+      </div>
+    </center>
+  </body>
+  <script>
+    var element = document.getElementById("updater")
+    var timer   = document.getElementById("timer")
+
+    async function updater() {
+      const promise = await fetch('/sync')
+      const data = await promise.json()
+
+      if (data["internet"] == true) {
+        element.classList.remove("red")
+        element.classList.add("green")
+
+        element.innerHTML = "Turned On"
+        timer.innerHTML   = "Last synced: "+data["last_synced"]+" seconds ago"
+        document.title = "🟢 Internet?"
+      }
+      else {
+        element.classList.remove("green")
+        element.classList.add("red")
+        
+        element.innerHTML = "Turned Off"
+        timer.innerHTML   = "Last on: "+data["last_synced"][0]+" hours "+data["last_synced"][1]+" minutes "+data["last_synced"][2]+" seconds ago"
+        document.title = "🔴 Internet?"
+      }
+
+    }
+
+    window.onload = setInterval(updater, 3000);
+  </script>
+</html>
