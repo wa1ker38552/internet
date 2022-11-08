@@ -34,7 +34,7 @@ a:hover {color: #52cbff; font-weight: bold;}
 }
 
 .history-wrapper {
-  height: 85vh;
+  height: 80vh;
   width: 50vw;
 
   overflow-y: auto;
