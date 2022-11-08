@@ -1,0 +1,55 @@
+body {
+  font-family: "Nunito";
+
+  margin: 0px;
+  padding: 0px;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+a {color: #000000; text-decoration: none}
+a:hover {color: #52cbff; font-weight: bold;}
+
+.title {font-size: 8vh;}
+.subtitle {font-size: 5vh;}
+
+.green {color: #3dcc00;}
+.red {color: #d10000;}
+
+.center-top {
+  position: relative;
+
+  top: 30vh;
+}
+
+.navbar-container {
+  width: 100vw;
+  height: 5vh;
+
+  text-align: left;
+  padding: 1vh;
+
+  font-size: 2vh;
+}
+
+.history-wrapper {
+  height: 85vh;
+  width: 50vw;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.history {
+  height: 5vh;
+  width: 50vw;
+
+  margin-top: 1vh;
+  padding: 1vh;
+
+  font-size: 2vh;
+  text-align: left;
+  
+  background: #e6e6e6;
+}
